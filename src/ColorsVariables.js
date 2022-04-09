@@ -1,5 +1,11 @@
-export const theme = {
-   white: '#ffffff',
-   purple: '#691E70',
-   red: '#FF0000',
+export const themeWhite = {
+   backgroundColor: '#ffffff',
+   colorText: '#691E70',
+   focusTextButton: '#FF0000',
+}
+
+export const themeDark = {
+   backgroundColor: '#691E70',
+   colorText: '#ffffff',
+   focusTextButton: '#FF0000',
 }

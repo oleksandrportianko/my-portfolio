@@ -1,28 +1,44 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styledComponents from 'styled-components';
 import { ThemeProvider } from 'styled-components';
-import { theme } from './ColorsVariables';
+import { themeWhite, themeDark } from './ColorsVariables';
 import './style.css'
 
 function App() {
+  const [theme, setTheme] = React.useState(themeWhite);
 
-  let currentThemeColor = localStorage.getItem('currentThemeColor') || '#ffffff';
+  useEffect(() => {
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme === 'themeWhite') {
+      setTheme(themeWhite);
+    } else {
+      setTheme(themeDark);
+    }
+  }, [])
 
   const changeThemeColor = () => {
-    localStorage.setItem('currentThemeColor', currentThemeColor === '#691E70' ? '#ffffff' : '#691E70');
-    currentThemeColor = localStorage.getItem('currentThemeColor');
+    localStorage.setItem('theme', theme.backgroundColor === themeWhite.backgroundColor  ? 'themeDark' : 'themeWhite');
+    const currentTheme =  localStorage.getItem('theme');
+    if (currentTheme === 'themeWhite') {
+      setTheme(themeWhite);
+    }
+    else { 
+      setTheme(themeDark);
+    }
   }
+
+  console.log(theme)
 
   return (
     <ThemeProvider theme={theme} >
-      <Wrapper currentThemeColor={currentThemeColor}>
-          <Header currentThemeColor={currentThemeColor}>
-            <ChangeColor currentThemeColor={currentThemeColor} onClick={() => changeThemeColor()}>Change theme</ChangeColor>
+      <Wrapper>
+          <Header>
+            <ChangeColor onClick={() => changeThemeColor()}>Change theme</ChangeColor>
             <BlockNavItem>
-              <NavItem currentThemeColor={currentThemeColor}>My Works</NavItem>
-              <NavItem currentThemeColor={currentThemeColor}>About Me</NavItem>
-              <NavItem currentThemeColor={currentThemeColor}>Proposals</NavItem>
-              <NavItem currentThemeColor={currentThemeColor}>Contact information</NavItem>
+              <NavItem>My Works</NavItem>
+              <NavItem>About Me</NavItem>
+              <NavItem>Proposals</NavItem>
+              <NavItem>Contact information</NavItem>
             </BlockNavItem>
           </Header>
           How are you?
@@ -37,16 +53,16 @@ const Wrapper = styledComponents.div`
   width: 100%;
   height: 100vh;
   font-size: 1rem;
-  background-color: ${props => props.currentThemeColor};
-  color: ${props => props.currentThemeColor === '#691E70' ? '#ffffff' : props.theme.purple};
+  background-color: ${props => props.theme.backgroundColor};
+  color: ${props => props.theme.colorText};
 `;
 
 const Header = styledComponents.div`
   width: 100vw;
   height: 50px;
   font-size: 1rem;
-  background-color: ${props => props.currentThemeColor === '#691E70' ? props.theme.purple : props.theme.white};
-  border-bottom: 1px solid ${props => props.currentThemeColor === '#691E70' ? props.theme.white : props.theme.purple};
+  background-color: ${props => props.theme.backgroundColor};
+  border-bottom: 1px solid ${props => props.theme.colorText};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -61,21 +77,21 @@ const BlockNavItem = styledComponents.div`
 `;
 
 const NavItem = styledComponents.div`
-  color: ${props => props.currentThemeColor === '#691E70' ? props.theme.white : props.theme.purple};
+  color: ${props => props.theme.colorText};
   font-size: 1.125rem;
   margin-right: 20px;
   &:hover {
-    color: ${props => props.theme.red};
+    color: ${props => props.theme.focusTextButton};
   }
 `;
 
 const ChangeColor = styledComponents.button`
-  color: ${props => props.currentThemeColor === '#691E70' ? props.theme.white : props.theme.purple};
+  color: ${props => props.theme.colorText};
   margin-left: 20px;
   border: none;
   background-color: transparent;
   font-size: 1.125rem;
   &:hover {
-    color: ${props => props.theme.red};
+    color: ${props => props.theme.focusTextButton};
   }
 `
