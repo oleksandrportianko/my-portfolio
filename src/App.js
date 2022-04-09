@@ -63,7 +63,7 @@ const Wrapper = styledComponents.div`
 `;
 
 const Header = styledComponents.div`
-  width: 100vw;
+  width: 100%;
   height: 50px;
   font-size: 1rem;
   background-color: ${props => props.theme.backgroundColor};
@@ -77,12 +77,12 @@ const HeaderText = styledComponents.div`
   font-size: 1.3rem;
   color: ${props => props.theme.colorText};
   font-weight: bold;
-  margin-left: 10px;
+  padding-left: 10px;
 `
 
 const ChangeColor = styledComponents.button`
   color: ${props => props.theme.colorText};
-  margin-right: 10px;
+  padding-right: 10px;
   border: none;
   background-color: transparent;
   font-size: 1.125rem;
@@ -93,7 +93,7 @@ const ChangeColor = styledComponents.button`
 `
 
 const FirstBlock = styledComponents.div`
-  width: 100vw;
+  width: 100%;
   height: 200px;
   background-color: ${props => props.theme.colorText};
   color: ${props => props.theme.backgroundColor};
