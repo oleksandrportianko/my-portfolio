@@ -3,6 +3,8 @@ import styledComponents from 'styled-components';
 import { ThemeProvider } from 'styled-components';
 import { themeWhite, themeDark } from './ColorsVariables';
 import './style.css'
+import darkTheme from './Images/dark-theme.svg';
+import whiteTheme from './Images/white-theme.svg';
 
 function App() {
   const [theme, setTheme] = React.useState(themeWhite);
@@ -31,7 +33,14 @@ function App() {
     <ThemeProvider theme={theme} >
       <Wrapper>
           <Header>
-            <ChangeColor onClick={() => changeThemeColor()}>Change theme</ChangeColor>
+            <HeaderText>Portfolio</HeaderText>
+            <ChangeColor onClick={() => changeThemeColor()}>
+              {
+                localStorage.getItem('theme') === 'themeDark' ? 
+                <ImgThemeDark src={darkTheme} /> : 
+                <ImgThemeWhite src={whiteTheme} /> 
+              }
+            </ChangeColor>
           </Header>
           <FirstBlock>
             <FirstBlockText>
@@ -64,12 +73,20 @@ const Header = styledComponents.div`
   align-items: center;
 `;
 
+const HeaderText = styledComponents.div`
+  font-size: 1.3rem;
+  color: ${props => props.theme.colorText};
+  font-weight: bold;
+  margin-left: 10px;
+`
+
 const ChangeColor = styledComponents.button`
   color: ${props => props.theme.colorText};
-  margin-left: 20px;
+  margin-right: 10px;
   border: none;
   background-color: transparent;
   font-size: 1.125rem;
+  display: flex;
   &:hover {
     color: ${props => props.theme.focusTextButton};
   }
@@ -77,7 +94,7 @@ const ChangeColor = styledComponents.button`
 
 const FirstBlock = styledComponents.div`
   width: 100vw;
-  height: 500px;
+  height: 200px;
   background-color: ${props => props.theme.colorText};
   color: ${props => props.theme.backgroundColor};
   display: flex;
@@ -90,4 +107,16 @@ const FirstBlockText = styledComponents.div`
   text-transform: uppercase;
   font-weight: bold;
   text-align: center;
+`
+
+const ImgThemeDark = styledComponents.img`
+  height: 30px;
+  width: 30px;
+  filter: invert(99%) sepia(39%) saturate(4619%) hue-rotate(168deg) brightness(122%) contrast(104%);
+`
+
+const ImgThemeWhite = styledComponents.img`
+  height: 30px;
+  width: 30px;
+  filter: invert(6%) sepia(19%) saturate(5693%) hue-rotate(208deg) brightness(90%) contrast(104%);;
 `
