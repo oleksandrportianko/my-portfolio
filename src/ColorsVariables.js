@@ -1,11 +1,11 @@
 export const themeWhite = {
-   backgroundColor: '#ffffff',
-   colorText: '#691E70',
+   backgroundColor: '#D5FFFB',
+   colorText: '#030C24',
    focusTextButton: '#FF0000',
 }
 
 export const themeDark = {
-   backgroundColor: '#691E70',
-   colorText: '#ffffff',
+   backgroundColor: '#030C24',
+   colorText: '#D5FFFB',
    focusTextButton: '#FF0000',
 }

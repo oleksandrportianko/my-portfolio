@@ -27,21 +27,17 @@ function App() {
     }
   }
 
-  console.log(theme)
-
   return (
     <ThemeProvider theme={theme} >
       <Wrapper>
           <Header>
             <ChangeColor onClick={() => changeThemeColor()}>Change theme</ChangeColor>
-            <BlockNavItem>
-              <NavItem>My Works</NavItem>
-              <NavItem>About Me</NavItem>
-              <NavItem>Proposals</NavItem>
-              <NavItem>Contact information</NavItem>
-            </BlockNavItem>
           </Header>
-          How are you?
+          <FirstBlock>
+            <FirstBlockText>
+              Hey my name is Oleksandr, I am a frontend developer.
+            </FirstBlockText>
+          </FirstBlock>
       </Wrapper>
     </ThemeProvider>
   );
@@ -62,27 +58,10 @@ const Header = styledComponents.div`
   height: 50px;
   font-size: 1rem;
   background-color: ${props => props.theme.backgroundColor};
-  border-bottom: 1px solid ${props => props.theme.colorText};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-`;
-
-const BlockNavItem = styledComponents.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: end;
-  align-items: center;
-`;
-
-const NavItem = styledComponents.div`
-  color: ${props => props.theme.colorText};
-  font-size: 1.125rem;
-  margin-right: 20px;
-  &:hover {
-    color: ${props => props.theme.focusTextButton};
-  }
 `;
 
 const ChangeColor = styledComponents.button`
@@ -94,4 +73,21 @@ const ChangeColor = styledComponents.button`
   &:hover {
     color: ${props => props.theme.focusTextButton};
   }
+`
+
+const FirstBlock = styledComponents.div`
+  width: 100vw;
+  height: 500px;
+  background-color: ${props => props.theme.colorText};
+  color: ${props => props.theme.backgroundColor};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const FirstBlockText = styledComponents.div`
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
 `
