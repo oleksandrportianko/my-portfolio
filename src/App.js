@@ -40,8 +40,8 @@ function App() {
             <ChangeColor onClick={() => changeThemeColor()}>
               {
                 localStorage.getItem('theme') === 'themeDark' ? 
-                <ImgThemeDark src={darkTheme} /> : 
-                <ImgThemeWhite src={whiteTheme} /> 
+                <ImgThemeWhite src={whiteTheme} />  : 
+                <ImgThemeDark src={darkTheme} />
               }
             </ChangeColor>
           </Header>
