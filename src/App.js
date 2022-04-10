@@ -13,8 +13,11 @@ function App() {
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme === 'themeWhite') {
       setTheme(themeWhite);
-    } else {
+    } else if (currentTheme === 'themeDark') {
       setTheme(themeDark);
+    } else {
+      setTheme(themeWhite);
+      localStorage.setItem('theme', 'themeWhite');
     }
   }, [])
 
