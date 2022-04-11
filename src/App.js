@@ -4,20 +4,20 @@ import { ThemeProvider } from 'styled-components';
 import { themeDark } from './Variables';
 import pixelMe from './Assets/pixel-me.png';
 import './style.css'
+import { Link } from "react-scroll";
 
 function App() {
   const [theme] = useState(themeDark);
-  const [activeNav, setActiveNav] = useState('home');
 
   return (
     <ThemeProvider theme={theme} >
       <Wrapper>
           <Header>
-            <NavItem onClick={() => setActiveNav('home')} href='#home' className={activeNav === 'home' ? 'active-nav' : '' }>Home</NavItem>
-            <NavItem onClick={() => setActiveNav('about')} href='#about' className={activeNav === 'about' ? 'active-nav' : '' }>About</NavItem>
-            <NavItem onClick={() => setActiveNav('works')} href='#works' className={activeNav === 'works' ? 'active-nav' : '' }>Works</NavItem>
-            <NavItem onClick={() => setActiveNav('resume')} href='#resume' className={activeNav === 'resume' ? 'active-nav' : '' }>Resume</NavItem>
-            <NavItem onClick={() => setActiveNav('contact')} href='#contact' className={activeNav === 'contact' ? 'active-nav' : '' }>Contact</NavItem>
+            <NavItem><NavLinks activeClass="active" to="home" spy={true} duration={300} smooth={true} delay={0}>Home</NavLinks></NavItem>
+            <NavItem><NavLinks activeClass="active" to="about" spy={true} duration={300} smooth={true} delay={0}>About</NavLinks></NavItem>
+            <NavItem><NavLinks activeClass="active" to="works" spy={true} duration={300} smooth={true} delay={0}>Works</NavLinks></NavItem>
+            <NavItem><NavLinks activeClass="active" to="resume" spy={true} duration={300} smooth={true} delay={0}>Resume</NavLinks></NavItem>
+            <NavItem><NavLinks activeClass="active" to="contact" spy={true} duration={300} smooth={true} delay={0}>Contact</NavLinks></NavItem>
           </Header>
           <HomeBlock id='home'>
             <TextBlock>
@@ -32,9 +32,21 @@ function App() {
           </AboutBlock>
           <WorksBlock id='works'>
             <WhiteTitle>Works</WhiteTitle>
+            <Projects>
+              <ProjectBlock>OMS</ProjectBlock>
+              <ProjectBlock>SKUDrop</ProjectBlock>
+              <ProjectBlock>Natus Vincere</ProjectBlock>
+              <ProjectBlock>Real</ProjectBlock>
+              <ProjectBlock>Barcelona</ProjectBlock>
+              <ProjectBlock>OMS</ProjectBlock>
+              <ProjectBlock>SKUDrop</ProjectBlock>
+              <ProjectBlock>Natus Vincere</ProjectBlock>
+              <ProjectBlock>Real</ProjectBlock>
+              <ProjectBlock>Barcelona</ProjectBlock>
+            </Projects>
           </WorksBlock>
           <ResumeBlock id='resume'>
-            <WhiteTitle>Resume</WhiteTitle>
+            <DarkTitle>Resume</DarkTitle>
           </ResumeBlock>
           <ContactBlock id='contact'>
             <WhiteTitle>Contact</WhiteTitle>
@@ -68,13 +80,13 @@ const Header = styledComponents.div`
 
 const HomeBlock = styledComponents.div`
   width: 100%;
-  height: 500px;
   color: ${props => props.theme.colorText};
   background-color: ${props => props.theme.backgroundColor};
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding-top: 60px;
+  padding-top: 100px;
+  padding-bottom: 50px;
 `
 
 const AboutBlock = styledComponents.div`
@@ -82,40 +94,44 @@ const AboutBlock = styledComponents.div`
   color: ${props => props.theme.backgroundColor};
   text-align: center;
   width: 100%;
-  height: 700px;
   display: flex;
   justify-content: center;
   padding-top: 50px;
+  padding-bottom: 50px;
 `
 
 const WorksBlock = styledComponents.div`
   background-color: ${props => props.theme.backgroundColor};
+  color: ${props => props.theme.colorText};
   text-align: center;
   width: 100%;
-  height: 1200px;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   padding-top: 50px;
+  padding-bottom: 50px;
 `
 
 const ResumeBlock = styledComponents.div`
-  background-color: ${props => props.theme.backgroundColor};
+  background-color: ${props => props.theme.colorText};
+  color: ${props => props.theme.backgroundColor};
   text-align: center;
   width: 100%;
-  height: 400px;
   display: flex;
   justify-content: center;
   padding-top: 50px;
+  padding-bottom: 50px;
 `
 
 const ContactBlock = styledComponents.div`
   background-color: ${props => props.theme.backgroundColor};
+  color: ${props => props.theme.colorText};
   text-align: center;
   width: 100%;
-  height: 600px;
   display: flex;
   justify-content: center;
   padding-top: 50px;
+  padding-bottom: 50px;
 `
 
 const NavItem = styledComponents.a`
@@ -125,10 +141,11 @@ const NavItem = styledComponents.a`
   color: ${props => props.theme.colorText};
   text-decoration: none;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
   &:hover {
     color: ${props => props.theme.focusText};
   }
-  &.active-nav {
+  &.active {
     transition: color 1.5s;
     color: ${props => props.theme.focusText};
   }
@@ -183,3 +200,41 @@ const DarkTitle = styledComponents.div`
   border-bottom: 7px solid ${props => props.theme.backgroundColor};
   border-radius: 5px;
 `
+
+const Projects = styledComponents.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 25px;
+  flex-wrap: wrap;
+`
+
+const ProjectBlock = styledComponents.div`
+  width: 250px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: ${props => props.theme.colorText};
+  color: ${props => props.theme.backgroundColor};
+  transition: all 1s ease-in-out;
+  margin: 15px 15px;
+  &:hover {
+    margin-bottom: 25px;
+    transition: all 1s ease-in-out;
+  }
+`
+
+const NavLinks = styledComponents(Link).attrs(() => ({
+  activeClass: 'active',
+  }))`
+  color: ${props => props.theme.colorText};
+  transition: all 1s ease-in-out;
+  &.active {
+    color: ${props => props.theme.focusText};
+    transition: all 1s ease-in-out;
+    border-bottom: 1px solid ${props => props.theme.focusText};
+  }
+`;
