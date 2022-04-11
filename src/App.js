@@ -222,7 +222,6 @@ const ProjectBlock = styledComponents.div`
   transition: all 1s ease-in-out;
   margin: 15px 15px;
   &:hover {
-    margin-bottom: 25px;
     transition: all 1s ease-in-out;
   }
 `
