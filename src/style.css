@@ -35,6 +35,10 @@ body {
     color: #FF0000;
 }
 
+.navigation-item {
+   text-decoration: none;
+}
+
 .navigation-item:hover {
    color: #FF0000;
 }
