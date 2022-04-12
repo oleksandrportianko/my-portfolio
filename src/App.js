@@ -14,9 +14,6 @@ function App() {
   const [theme] = useState(themeDark);
   const [projects] = useState(myProjects);
   const [activeProject, setActiveProject] = useState(1);
-
-  
-
   return (
     <ThemeProvider theme={theme} >
       <Wrapper>
@@ -40,7 +37,7 @@ function App() {
           </AboutBlock>
           <WorksBlock id='projects'>
             <WhiteTitle>Projects</WhiteTitle>
-            <div className='d-flex flex-row'>
+            <div className='block-with-my-projects'>
               <Projects>
                 {projects.map((project) => (
                   <ProjectBlock key={project.id} onClick={() => setActiveProject(project.id)}>
@@ -241,10 +238,9 @@ const Projects = styledComponents.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-  justify-content: center;
-  margin-top: 25px;
+  justify-content: start;
+  margin-top: 50px;
   flex-wrap: wrap;
-  border-left: 2px solid ${props => props.theme.colorText};
 `
 
 const ProjectBlock = styledComponents.div`
@@ -258,10 +254,11 @@ const ProjectBlock = styledComponents.div`
   transition: all 1s ease-in-out;
   padding: 5px 5px;
   cursor: pointer;
+  border-left: 3px solid ${props => props.theme.colorText};
   &:hover {
     transition: all 1s ease-in-out;
-    border-left: 2px solid ${props => props.theme.colorText};
-    background-color: ${props => props.theme.focusText};
+    background-color: ${props => props.theme.colorText};
+    color: ${props => props.theme.backgroundColor};
   }
 `
 
@@ -334,6 +331,7 @@ const TextMessage = styledComponents.textarea`
   color: ${props => props.theme.colorText};
   transition: all 1s ease-in-out;
   padding-left: 10px;
+  resize: none;
   &:focus {
     border: 1px solid ${props => props.theme.focusText};
     border-radius: 0px;
@@ -402,9 +400,9 @@ const ProjectsDescription = styledComponents.div`
   flex-direction: column;
   justify-content: start;
   align-items: start;
-  margin-top: 25px;
+  margin-top: 50px;
 `
 
 const ProjectDescription = styledComponents.div`
-
+  padding-left: 10px;
 `

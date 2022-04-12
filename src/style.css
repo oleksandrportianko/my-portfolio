@@ -46,3 +46,9 @@ body {
 textarea {
    resize: none;
 }
+
+.block-with-my-projects {
+   display: flex;
+   flex-direction: row;
+   min-height: 250px;
+}
