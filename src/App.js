@@ -40,7 +40,7 @@ function App() {
             <div className='block-with-my-projects'>
               <Projects>
                 {projects.map((project) => (
-                  <ProjectBlock key={project.id} onClick={() => setActiveProject(project.id)}>
+                  <ProjectBlock key={project.id} className={activeProject === project.id ? 'active-project-name' : ''} onClick={() => setActiveProject(project.id)}>
                     <div>{project.nameProject}</div>
                   </ProjectBlock>
                 ))}
@@ -259,6 +259,11 @@ const ProjectBlock = styledComponents.div`
     transition: all 1s ease-in-out;
     background-color: ${props => props.theme.colorText};
     color: ${props => props.theme.backgroundColor};
+  }
+  &.active-project-name {
+     border-left: 3px solid ${props => props.theme.focusText};
+     background-color: ${props => props.theme.colorText};
+     color: ${props => props.theme.backgroundColor};
   }
 `
 

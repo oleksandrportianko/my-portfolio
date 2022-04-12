@@ -52,3 +52,7 @@ textarea {
    flex-direction: row;
    min-height: 250px;
 }
+
+.active-project-name {
+   border-left: 2px solid #FF0000; ;
+}
