@@ -3,6 +3,9 @@ import styledComponents from 'styled-components';
 import { ThemeProvider } from 'styled-components';
 import { themeDark } from './Variables';
 import pixelMe from './Assets/pixel-me.png';
+import github from './Assets/github.svg';
+import linkedin from './Assets/linkedin.svg';
+import instagram from './Assets/instagram.svg';
 import './style.css'
 import { Link } from "react-scroll";
 
@@ -13,11 +16,11 @@ function App() {
     <ThemeProvider theme={theme} >
       <Wrapper>
           <Header>
-            <NavItem><NavLinks activeClass="active" to="home" spy={true} duration={300} smooth={true} delay={0}>Home</NavLinks></NavItem>
-            <NavItem><NavLinks activeClass="active" to="about" spy={true} duration={300} smooth={true} delay={0}>About</NavLinks></NavItem>
-            <NavItem><NavLinks activeClass="active" to="works" spy={true} duration={300} smooth={true} delay={0}>Works</NavLinks></NavItem>
-            <NavItem><NavLinks activeClass="active" to="resume" spy={true} duration={300} smooth={true} delay={0}>Resume</NavLinks></NavItem>
-            <NavItem><NavLinks activeClass="active" to="contact" spy={true} duration={300} smooth={true} delay={0}>Contact</NavLinks></NavItem>
+            <NavItem><NavLinks activeClass="active" className='navigation-item' to="home" spy={true} duration={300} smooth={true} delay={0}>Home</NavLinks></NavItem>
+            <NavItem><NavLinks activeClass="active" className='navigation-item' to="about" spy={true} duration={300} smooth={true} delay={0}>About</NavLinks></NavItem>
+            <NavItem><NavLinks activeClass="active" className='navigation-item' to="works" spy={true} duration={300} smooth={true} delay={0}>Works</NavLinks></NavItem>
+            <NavItem><NavLinks activeClass="active" className='navigation-item' to="resume" spy={true} duration={300} smooth={true} delay={0}>Resume</NavLinks></NavItem>
+            <NavItem><NavLinks activeClass="active" className='navigation-item' to="contact" spy={true} duration={300} smooth={true} delay={0}>Contact</NavLinks></NavItem>
           </Header>
           <HomeBlock id='home'>
             <TextBlock>
@@ -50,6 +53,25 @@ function App() {
           </ResumeBlock>
           <ContactBlock id='contact'>
             <WhiteTitle>Contact</WhiteTitle>
+            <UnderTitle>Have you question or proposal to work together</UnderTitle>
+            <EmailBlock>
+              <NameUser placeholder='Name' type="text"></NameUser>
+              <EmailUser placeholder='Email' type="email"></EmailUser>
+              <TextMessage placeholder='Your Message' type="text"></TextMessage>
+              <SendButton>Send</SendButton>
+            </EmailBlock>
+            <SocialBlock>
+              <SocialLink href="">
+                <SocialIcon src={github}></SocialIcon>
+              </SocialLink>
+              <SocialLink href="">
+                <SocialIcon src={instagram}></SocialIcon>
+              </SocialLink>
+              <SocialLink href="">
+                <SocialIcon src={linkedin}></SocialIcon>
+              </SocialLink>
+            </SocialBlock>
+            <NamePrivicy>Oleksandr Portianko ©2022</NamePrivicy>
           </ContactBlock>
       </Wrapper>
     </ThemeProvider>
@@ -129,7 +151,8 @@ const ContactBlock = styledComponents.div`
   text-align: center;
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding-top: 50px;
   padding-bottom: 50px;
 `
@@ -143,10 +166,6 @@ const NavItem = styledComponents.a`
   transition: all 0.3s ease-in-out;
   cursor: pointer;
   &:hover {
-    color: ${props => props.theme.focusText};
-  }
-  &.active {
-    transition: color 1.5s;
     color: ${props => props.theme.focusText};
   }
 `
@@ -235,5 +254,124 @@ const NavLinks = styledComponents(Link).attrs(() => ({
     color: ${props => props.theme.focusText};
     transition: all 1s ease-in-out;
     border-bottom: 1px solid ${props => props.theme.focusText};
+    
   }
 `;
+
+const NamePrivicy = styledComponents.div`
+  font-size: 1rem;
+  color: ${props => props.theme.focusText};
+  margin-top: 30px;
+`
+
+const EmailBlock = styledComponents.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  width: 100%;
+  margin: 80px 0;
+  align-items: end;
+`
+
+const NameUser = styledComponents.input`
+  width: 100%;
+  height: 30px;
+  border: 1px solid ${props => props.theme.colorText};
+  background-color: transparent;
+  margin-top: 10px;
+  color: ${props => props.theme.colorText};
+  padding-left: 10px;
+  transition: all 1s ease-in-out;
+  &:focus {
+    border: 1px solid ${props => props.theme.focusText};
+    border-radius: 0px;
+    transition: all 1s ease-in-out;
+  }
+`
+
+const EmailUser = styledComponents.input`
+  width: 100%;
+  height: 30px;
+  border: 1px solid ${props => props.theme.colorText};
+  background-color: transparent;
+  margin-top: 10px;
+  color: ${props => props.theme.colorText};
+  padding-left: 10px;
+  transition: all 1s ease-in-out;
+  &:focus {
+    border: 1px solid ${props => props.theme.focusText};
+    border-radius: 0px;
+    transition: all 1s ease-in-out;
+  }
+`
+
+const TextMessage = styledComponents.textarea`
+  width: 100%;
+  height: 100px;
+  border: 1px solid ${props => props.theme.colorText};
+  background-color: transparent;
+  margin-top: 10px;
+  color: ${props => props.theme.colorText};
+  transition: all 1s ease-in-out;
+  padding-left: 10px;
+  &:focus {
+    border: 1px solid ${props => props.theme.focusText};
+    border-radius: 0px;
+    transition: all 1s ease-in-out;
+  }
+`
+
+const SendButton = styledComponents.button`
+  width: 100px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid ${props => props.theme.colorText};
+  color: ${props => props.theme.colorText};
+  font-size: 1rem;
+  font-family: 'Raleway';
+  margin-top: 5px;
+  transition: all 1s ease-in-out;
+  &:hover {
+    border: 1px solid ${props => props.theme.colorText};
+    background-color: ${props => props.theme.colorText};
+    color: ${props => props.theme.backgroundColor};
+    transition: all 1s ease-in-out;
+    border-radius: 0px;
+    font-weight: 500;
+  }
+`
+
+const SocialBlock = styledComponents.div`
+  width: 100%;  
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px 0;
+  background-color: ${props => props.theme.colorText};
+  padding: 40px 0;
+`
+
+const SocialLink = styledComponents.a`
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+`
+
+const SocialIcon = styledComponents.img`
+  width: 100%;
+  height: 100%;
+  filter: invert(6%) sepia(10%) saturate(7205%) hue-rotate(197deg) brightness(100%) contrast(104%);
+  transition: all 0.7s ease-in-out;
+  &:hover {
+    transition: all 0.7s ease-in-out;
+    filter: invert(16%) sepia(91%) saturate(7080%) hue-rotate(0deg) brightness(96%) contrast(114%);
+  }
+`
+
+const UnderTitle = styledComponents.div`
+  color: ${props => props.theme.colorText};
+  font-size: 1rem;
+  text-align: center;
+  width: 100%;
+  margin-top: 30px;
+`
