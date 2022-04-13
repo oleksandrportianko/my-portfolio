@@ -7,6 +7,7 @@ import pixelMe from './Assets/pixel-me.png';
 import github from './Assets/github.svg';
 import linkedin from './Assets/linkedin.svg';
 import instagram from './Assets/instagram.svg';
+import point from './Assets/point.svg';
 import './style.css'
 import { Link } from "react-scroll";
 
@@ -14,6 +15,9 @@ function App() {
   const [theme] = useState(themeDark);
   const [projects] = useState(myProjects);
   const [activeProject, setActiveProject] = useState(1);
+  const [isScrolling, setIsScrolling] = useState(false);
+
+
   return (
     <ThemeProvider theme={theme} >
       <Wrapper>
@@ -24,18 +28,18 @@ function App() {
             <NavItem><NavLinks activeClass="active" className='navigation-item' to="resume" spy={true} duration={300} smooth={true} delay={0}>Resume</NavLinks></NavItem>
             <NavItem><NavLinks activeClass="active" className='navigation-item' to="contact" spy={true} duration={300} smooth={true} delay={0}>Contact</NavLinks></NavItem>
          </Header>
-            <HomeBlock id='home'>
-              <TextBlock>
+         <HomeBlock id='home'>
+            <TextBlock>
                <Phrase>Hi, my name is</Phrase>
-               <MyName>Oleksandr Portianko</MyName>
-               <Phrase>I'm a frontend web developer</Phrase>
+               <MyName>Oleksandr Portianko.</MyName>
+               <PixelMe src={pixelMe}></PixelMe>
+               <Phrase className='mt-4'>I'm a frontend web developer</Phrase>
             </TextBlock>
-            <PixelMe src={pixelMe}></PixelMe>
-          </HomeBlock>
-          <AboutBlock id='about'>
+         </HomeBlock>
+         <AboutBlock id='about'>
             <DarkTitle>About</DarkTitle>
-          </AboutBlock>
-          <WorksBlock id='projects'>
+         </AboutBlock>
+         <WorksBlock id='projects'>
             <WhiteTitle>Projects</WhiteTitle>
             <div className='block-with-my-projects'>
               <Projects>
@@ -46,26 +50,26 @@ function App() {
                 ))}
               </Projects>
               <ProjectsDescription>
-                {projects.map((project) => 
-                {
+                {projects.map((project) => {
                     if(project.id === activeProject)
                     {
                       return (
                         <ProjectDescription key={project.id}>
-                        <div className='text-start'>{project.description}</div>
-                        <div className='text-start'>{project.stack}</div>
+                        <div className='text-start'><Point src={point} alt='' />{project.description}</div>
+                        <div className='text-start'><Point src={point} alt='' />{project.stack}</div>
                       </ProjectDescription>
                     )
                   }
+                  return null;
                 }
                 )}
               </ProjectsDescription>
             </div>
-          </WorksBlock>
-          <ResumeBlock id='resume'>
+         </WorksBlock>
+         <ResumeBlock id='resume'>
             <DarkTitle>Resume</DarkTitle>
-          </ResumeBlock>
-          <ContactBlock id='contact'>
+         </ResumeBlock>
+         <ContactBlock id='contact'>
             <WhiteTitle>Contact</WhiteTitle>
             <UnderTitle>Have you question or proposal to work together</UnderTitle>
             <EmailBlock>
@@ -119,8 +123,9 @@ const HomeBlock = styledComponents.div`
   color: ${props => props.theme.colorText};
   background-color: ${props => props.theme.backgroundColor};
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding-top: 100px;
   padding-bottom: 50px;
 `
@@ -188,7 +193,6 @@ const NavItem = styledComponents.a`
 const Phrase = styledComponents.div`
   font-size: 1rem;
   font-family: 'Raleway';
-  font-style: italic;
 `
 
 const PixelMe = styledComponents.img`
@@ -199,7 +203,7 @@ const PixelMe = styledComponents.img`
 `
 
 const MyName = styledComponents.div`
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-family: 'Raleway';
   font-weight: bold;
 `
@@ -388,6 +392,7 @@ const SocialIcon = styledComponents.img`
   &:hover {
     transition: all 0.7s ease-in-out;
     filter: invert(16%) sepia(91%) saturate(7080%) hue-rotate(0deg) brightness(96%) contrast(114%);
+    animation: socIcon 2s infinite;
   }
 `
 
@@ -400,7 +405,7 @@ const UnderTitle = styledComponents.div`
 `
 
 const ProjectsDescription = styledComponents.div`
-  width: 300px;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -410,4 +415,11 @@ const ProjectsDescription = styledComponents.div`
 
 const ProjectDescription = styledComponents.div`
   padding-left: 10px;
+`
+
+const Point = styledComponents.img`
+   width: 10px;
+   height: 10px;
+   margin-right: 5px;
+   filter: invert(14%) sepia(93%) saturate(7041%) hue-rotate(4deg) brightness(112%) contrast(118%);
 `

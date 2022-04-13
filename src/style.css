@@ -5,6 +5,11 @@
    outline-offset: 0;
 }
 
+a, a:hover, a:focus, a:active {
+   text-decoration: none;
+   color: inherit;
+}
+
 html {
    scroll-behavior: smooth;
  }
@@ -56,3 +61,8 @@ textarea {
 .active-project-name {
    border-left: 2px solid #FF0000; ;
 }
+
+@-webkit-keyframes socIcon { 0% { transform: translate3d(0, 0, 0)} 50% {transform: translate3d(0, -5px, 0); width: 45px; height: 45px;} 100% { transform: translate3d(0, 0, 0)}  }
+   @-moz-keyframes socIcon { 0% { transform: translate3d(0, 0, 0)} 50% {transform: translate3d(0, -5px, 0); width: 45px; height: 45px;} 100% { transform: translate3d(0, 0, 0)}  }
+     @-o-keyframes socIcon { 0% { transform: translate3d(0, 0, 0)} 50% {transform: translate3d(0, -5px, 0); width: 45px; height: 45px;} 100% { transform: translate3d(0, 0, 0)}  }
+        @keyframes socIcon { 0% { transform: translate3d(0, 0, 0)} 50% {transform: translate3d(0, -5px, 0); width: 45px; height: 45px;} 100% { transform: translate3d(0, 0, 0)}  }
