@@ -33,7 +33,7 @@ function App() {
                <Phrase>Hi, my name is</Phrase>
                <MyName>Oleksandr Portianko.</MyName>
                <PixelMe src={pixelMe}></PixelMe>
-               <Phrase className='mt-4'>I'm a frontend web developer</Phrase>
+               <Phrase className='mt-4'>I'm a frontend web developer at SP-Lutsk</Phrase>
             </TextBlock>
          </HomeBlock>
          <AboutBlock id='about'>
@@ -55,8 +55,9 @@ function App() {
                     {
                       return (
                         <ProjectDescription key={project.id}>
-                        <div className='text-start'><Point src={point} alt='' />{project.description}</div>
-                        <div className='text-start'><Point src={point} alt='' />{project.stack}</div>
+                        <div className='text-start'><Point src={point} alt='' /><span className='project-description-title'>Description:</span>{project.description}</div>
+                        <div className='text-start'><Point src={point} alt='' /><span className='project-description-title'>Project Stack:</span> {project.projectStack}</div>
+                        <div className='text-start'><Point src={point} alt='' /><span className='project-description-title'>I`m working with:</span> {project.workingWith}</div>
                       </ProjectDescription>
                     )
                   }
@@ -174,7 +175,6 @@ const ContactBlock = styledComponents.div`
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
-  padding-bottom: 50px;
 `
 
 const NavItem = styledComponents.a`
@@ -287,7 +287,10 @@ const NavLinks = styledComponents(Link).attrs(() => ({
 const NamePrivicy = styledComponents.div`
   font-size: 1rem;
   color: ${props => props.theme.focusText};
-  margin-top: 30px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const EmailBlock = styledComponents.div`
@@ -295,7 +298,7 @@ const EmailBlock = styledComponents.div`
   flex-direction: column;
   max-width: 450px;
   width: 98%;
-  margin: 80px 0;
+  margin: 70px 0;
   align-items: end;
 `
 
@@ -369,13 +372,14 @@ const SendButton = styledComponents.button`
 `
 
 const SocialBlock = styledComponents.div`
-  width: 100%;  
+  width: 100%;
+  height: 150px;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   margin: 10px 0;
   background-color: ${props => props.theme.colorText};
-  padding: 40px 0;
 `
 
 const SocialLink = styledComponents.a`
